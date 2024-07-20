@@ -30,9 +30,10 @@ $primaryKey = 'id_pendeta';
 // indexes
 $columns = array(
     array('db' => 'id_periode', 'dt' => 0),
-    array('db' => 'nama',  'dt' => 1),
+    array('db' => 'nama_pendeta',  'dt' => 1),
     array('db' => 'tanggal_menjabat',   'dt' => 2),
-    array('db' => 'tanggal_jabatan_berakhir ',     'dt' => 3),
+    array('db' => 'tanggal_jabatan_berakhir',     'dt' => 3),
+    array('db' => 'id_pendeta',     'dt' => 4),
     // array(
     //     'db'        => 'salary',
     //     'dt'        => 5,

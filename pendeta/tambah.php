@@ -16,19 +16,19 @@
                         <div class="form-group row">
                             <label for="nama" class="col-sm-2 text-start control-label col-form-label">Nama Pendeta</label>
                             <div class="col-sm-9">
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Pendeta" required>
+                                <input type="text" name="nama_pendeta" class="form-control" id="nama" placeholder="Nama Pendeta" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="tanggal_menjabat" class="col-sm-2 text-start control-label col-form-label">Tanggal Menjabat</label>
                             <div class="col-sm-9">
-                                <input type="text" name="tanggal_menjabat" class="form-control" id="id_pendeta" placeholder="Tanggal Menjabat" required>
+                                <input type="date" name="tanggal_menjabat" class="form-control" id="id_pendeta" placeholder="Tanggal Menjabat" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="tanggal_jabatan_berakhir" class="col-sm-2 text-start control-label col-form-label">Tanggal Jabatan Berahkir</label>
                             <div class="col-sm-9">
-                                <input type="text" name="tanggal_jabatan_berakhir" class="form-control" id="tanggal_jabatan_berakhir" placeholder="Tanggal Jabatan Berahkir" required>
+                                <input type="date" name="tanggal_jabatan_berakhir" class="form-control" id="tanggal_jabatan_berakhir" placeholder="Tanggal Jabatan Berahkir" required>
                             </div>
                         </div>
                     </div>
