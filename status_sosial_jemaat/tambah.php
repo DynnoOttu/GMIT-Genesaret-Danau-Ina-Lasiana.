@@ -5,47 +5,87 @@
         <div class="card">
             <form class="form-horizontal" action="proses.php" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
-                    <h4 class="card-title">Tambah Data Jemaat</h4>
-                    <div class="tabel">
-                        <div class="form-group row">
-                            <label for="id_majelis" class="col-sm-2 text-start control-label col-form-label">Majelis</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_majelis" class="form-control" id="id_majelis" placeholder="Nama Majelis" required>
-                            </div>
+                    <h4 class="card-title">Tambah Data Status Sosial Jemaat</h4>
+                    <div class="form-group row">
+                        <label for="id_jemaat" class="col-sm-2 text-start control-label col-form-label">Nama Jemaat</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_jemaat" id="id_jemaat" required>
+                                <option value="">Pilih Nama Jemaat</option>
+                                <?php
+                                $result = mysqli_query($con, "SELECT id_jemaat, nama FROM jemaat");
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row['id_jemaat'] . "'>" . $row['nama'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <label for="id_pendeta" class="col-sm-2 text-start control-label col-form-label">Pendeta</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_pendeta" class="form-control" id="id_pendeta" placeholder="Nama Pendeta" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pendidikan" class="col-sm-2 text-start control-label col-form-label">Pendidikan</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="pendidikan" class="form-control" id="pendidikan" placeholder="Pendidikan" required>
                         </div>
-                        <div class="form-group row">
-                            <label for="id_kk" class="col-sm-2 text-start control-label col-form-label">Kepala Keluarga</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_kk" class="form-control" id="id_kk" placeholder="Kepala Keluarga" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pekerjaan" class="col-sm-2 text-start control-label col-form-label">Pekerjaan</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Pekerjaan">
                         </div>
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-2 text-start control-label col-form-label">Nama Jemaat</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Pendeta" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_baptis" class="col-sm-2 text-start control-label col-form-label">Status Baptis</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_baptis" id="status_baptis">
+                                <option value="">Pilih Status Baptis</option>
+                                <option value="Sudah">Sudah</option>
+                                <option value="Belum">Belum</option>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <label for="tempat_dan_tanggal_lahir" class="col-sm-2 text-start control-label col-form-label">Tempat dan Tanggal Lahir</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="tempat_dan_tanggal_lahir" class="form-control" id="tempat_dan_tanggal_lahir" placeholder="Tempat dan Tanggal Lahir" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_baptis" class="col-sm-2 text-start control-label col-form-label">Tanggal Baptis</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_baptis" class="form-control" id="tanggal_baptis">
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-2" for="jenis_kelamin">Jenis Kelamin</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="jenis_kelamin" id="jenis_kelamin" required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_sidi" class="col-sm-2 text-start control-label col-form-label">Status Sidi</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_sidi" id="status_sidi">
+                                <option value="">Pilih Status Sidi</option>
+                                <option value="Sudah">Sudah</option>
+                                <option value="Belum">Belum</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_sidi" class="col-sm-2 text-start control-label col-form-label">Tanggal Sidi</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_sidi" class="form-control" id="tanggal_sidi">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_pernikahan" class="col-sm-2 text-start control-label col-form-label">Status Pernikahan</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_pernikahan" id="status_pernikahan">
+                                <option value="">Pilih Status Pernikahan</option>
+                                <option value="Kawin">Kawin</option>
+                                <option value="Belum Kawin">Belum Kawin</option>
+                                <option value="Cerai Hidup">Cerai Hidup</option>
+                                <option value="Cerai Mati">Cerai Mati</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_nikah" class="col-sm-2 text-start control-label col-form-label">Tanggal Nikah</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_nikah" class="form-control" id="tanggal_nikah">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="meninggal_at" class="col-sm-2 text-start control-label col-form-label">Tanggal Meninggal</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="meninggal_at" class="form-control" id="meninggal_at">
                         </div>
                     </div>
                 </div>

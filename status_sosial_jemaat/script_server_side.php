@@ -12,7 +12,7 @@ $primaryKey = 'id_status_sosial_jemaat';
 
 // Kolom yang akan dibaca dan dikirimkan kembali ke DataTables
 $columns = array(
-    array('db' => 'id_status_sosial_jemaat', 'dt' => 0),
+    array('db' => 'nama', 'dt' => 0),
     array('db' => 'pendidikan', 'dt' => 1),
     array('db' => 'pekerjaan', 'dt' => 2),
     array('db' => 'status_baptis', 'dt' => 3),
@@ -22,7 +22,8 @@ $columns = array(
     array('db' => 'status_pernikahan', 'dt' => 7),
     array('db' => 'tanggal_nikah', 'dt' => 8),
     array('db' => 'meninggal_at', 'dt' => 9),
-    array('db' => 'deletet_at', 'dt' => 10),
+    array('db' => 'id_status_sosial_jemaat', 'dt' => 10),
+
 );
 
 // Konfigurasi koneksi database
@@ -30,11 +31,10 @@ include_once '../_config/conn.php';
 
 // Sertakan kelas SSP
 require('../assets/libs/ssp.class.php');
+$joinTabelJemaat = "LEFT JOIN jemaat ON status_sosial_jemaat.id_jemaat = jemaat.id_jemaat WHERE deletet_at IS NULL";
 
-// Query JOIN kustom untuk menggabungkan tabel jemaat dan pendeta
-// $joinQuery = "LEFT JOIN pendeta ON jemaat.id_pendeta = pendeta.id_pendeta";
 
-// Jalankan query dengan JOIN dan outputkan hasil dalam format JSON
+
 echo json_encode(
-    SSP::simple($_GET, $sql_details, $table, $primaryKey, $columns)  // Menambahkan parameter JOIN
+    SSP::simple($_GET, $sql_details, $table, $primaryKey, $columns, $joinTabelJemaat)  // Menambahkan parameter JOIN
 );

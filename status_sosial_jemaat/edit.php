@@ -6,61 +6,95 @@
 
             <?php
             $id = &$_GET['id'];
-            $sql_jemaat = mysqli_query($con, "SELECT * FROM jemaat WHERE id_jemaat = '$id'") or die(mysqli_error($con));
+            $sql_jemaat = mysqli_query($con, "SELECT * FROM status_sosial_jemaat WHERE id_status_sosial_jemaat = '$id'") or die(mysqli_error($con));
             $data = mysqli_fetch_array($sql_jemaat);
 
             ?>
 
             <form class="form-horizontal" action="proses.php" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
-                    <h4 class="card-title">Edit Data Jemaat</h4>
-                    <div class="tabel">
-                        <div class="form-group row">
-                            <label for="status_jemaat" class="col-sm-2 text-start control-label col-form-label">Status Jemaat</label>
-                            <div class="col-sm-9">
-                                <input type="hidden" name="id" value="<?= $data['id_jemaat'] ?>">
-                                <input type="text" name="status_jemaat" class="form-control" id="id_status_jemaat" placeholder="Status Jemaat" value="<?= $data['id_status_jemaat'] ?>" required>
-                            </div>
+                    <h4 class="card-title">Edit Data Status Sosial Jemaat</h4>
+                    <div class="form-group row">
+                        <label for="id_jemaat" class="col-sm-2 text-start control-label col-form-label">Nama Jemaat</label>
+                        <input type="hidden" name="id" value="<?php echo $data['id_status_sosial_jemaat']; ?>">
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_jemaat" id="id_jemaat" required>
+                                <option value="">Pilih Nama Jemaat</option>
+                                <?php
+                                $result = mysqli_query($con, "SELECT id_jemaat, nama FROM jemaat");
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row['id_jemaat'] . "' " . ($data['id_jemaat'] == $row['id_jemaat'] ? 'selected' : '') . ">" . $row['nama'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <label for="id_majelis" class="col-sm-2 text-start control-label col-form-label">Majelis</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_majelis" class="form-control" id="id_majelis" placeholder="Nama Majelis" value="<?= $data['id_majelis'] ?>" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pendidikan" class="col-sm-2 text-start control-label col-form-label">Pendidikan</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="pendidikan" class="form-control" id="pendidikan" value="<?php echo $data['pendidikan']; ?>" placeholder="Pendidikan" required>
                         </div>
-                        <div class="form-group row">
-                            <label for="id_pendeta" class="col-sm-2 text-start control-label col-form-label">Pendeta</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_pendeta" class="form-control" id="id_pendeta" placeholder="Nama Pendeta" value="<?= $data['id_pendeta'] ?>" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pekerjaan" class="col-sm-2 text-start control-label col-form-label">Pekerjaan</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" value="<?php echo $data['pekerjaan']; ?>" placeholder="Pekerjaan">
                         </div>
-                        <div class="form-group row">
-                            <label for="id_kk" class="col-sm-2 text-start control-label col-form-label">Kepala Keluarga</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_kk" class="form-control" id="id_kk" placeholder="Kepala Keluarga" value="<?= $data['id_kk'] ?>" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_baptis" class="col-sm-2 text-start control-label col-form-label">Status Baptis</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_baptis" id="status_baptis">
+                                <option value="">Pilih Status Baptis</option>
+                                <option value="Sudah" <?php echo $data['status_baptis'] == 'Sudah' ? 'selected' : ''; ?>>Sudah</option>
+                                <option value="Belum" <?php echo $data['status_baptis'] == 'Belum' ? 'selected' : ''; ?>>Belum</option>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-2 text-start control-label col-form-label">Nama Jemaat</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Jemaat" value="<?= $data['nama'] ?>" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_baptis" class="col-sm-2 text-start control-label col-form-label">Tanggal Baptis</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_baptis" class="form-control" id="tanggal_baptis" value="<?php echo $data['tanggal_baptis']; ?>">
                         </div>
-                        <div class="form-group row">
-                            <label for="tempat_dan_tanggal_lahir" class="col-sm-2 text-start control-label col-form-label">Tempat dan Tanggal Lahir</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="tempat_dan_tanggal_lahir" class="form-control" id="tempat_dan_tanggal_lahir" placeholder="Tempat dan Tanggal Lahir" value="<?= $data['tempat_dan_tanggal_lahir'] ?>" required>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_sidi" class="col-sm-2 text-start control-label col-form-label">Status Sidi</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_sidi" id="status_sidi">
+                                <option value="">Pilih Status Sidi</option>
+                                <option value="Sudah" <?php echo $data['status_sidi'] == 'Sudah' ? 'selected' : ''; ?>>Sudah</option>
+                                <option value="Belum" <?php echo $data['status_sidi'] == 'Belum' ? 'selected' : ''; ?>>Belum</option>
+                            </select>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-2" for="jenis_kelamin">Jenis Kelamin</label>
-                            <div class="col-md-9">
-                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="jenis_kelamin" id="jenis_kelamin" required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option <?php if ($data['jenis_kelamin'] == "L") echo 'selected'; ?> value="L">Laki Laki</option>
-                                    <option <?php if ($data['jenis_kelamin'] == "P") echo 'selected'; ?> value="P">Perempuan</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_sidi" class="col-sm-2 text-start control-label col-form-label">Tanggal Sidi</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_sidi" class="form-control" id="tanggal_sidi" value="<?php echo $data['tanggal_sidi']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status_pernikahan" class="col-sm-2 text-start control-label col-form-label">Status Pernikahan</label>
+                        <div class="col-sm-9">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status_pernikahan" id="status_pernikahan">
+                                <option value="">Pilih Status Pernikahan</option>
+                                <option value="Kawin" <?php echo $data['status_pernikahan'] == 'Kawin' ? 'selected' : ''; ?>>Kawin</option>
+                                <option value="Belum Kawin" <?php echo $data['status_pernikahan'] == 'Belum Kawin' ? 'selected' : ''; ?>>Belum Kawin</option>
+                                <option value="Cerai Hidup" <?php echo $data['status_pernikahan'] == 'Cerai Hidup' ? 'selected' : ''; ?>>Cerai Hidup</option>
+                                <option value="Cerai Mati" <?php echo $data['status_pernikahan'] == 'Cerai Mati' ? 'selected' : ''; ?>>Cerai Mati</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="tanggal_nikah" class="col-sm-2 text-start control-label col-form-label">Tanggal Nikah</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="tanggal_nikah" class="form-control" id="tanggal_nikah" value="<?php echo $data['tanggal_nikah']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="meninggal_at" class="col-sm-2 text-start control-label col-form-label">Tanggal Meninggal</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="meninggal_at" class="form-control" id="meninggal_at" value="<?php echo $data['meninggal_at']; ?>">
                         </div>
                     </div>
                 </div>
@@ -68,12 +102,11 @@
                     <div class="card-body">
                         <a href="data.php"><button type="button" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Kembali</button></a>
                         <button type="submit" name="edit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
-
 <?php require_once('../_footer.php') ?>

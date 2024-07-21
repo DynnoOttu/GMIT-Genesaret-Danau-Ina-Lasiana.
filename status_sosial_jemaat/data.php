@@ -18,7 +18,7 @@
                             <table id="jemaat" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Status Sosial Jemaat</th>
+                                        <th scope="col">Nama Jemaat</th>
                                         <th scope="col">Pendidikan</th>
                                         <th scope="col">Pekerjaan</th>
                                         <th scope="col">Status Baptis</th>
@@ -28,7 +28,6 @@
                                         <th scope="col">Status Pernikahan</th>
                                         <th scope="col">Tanggal Nikah</th>
                                         <th scope="col">Meninggal</th>
-                                        <th scope="col">Delete</th>
                                         <th scope="col">
                                             <i class="fas fa-cog"></i>
                                         </th>
@@ -63,7 +62,7 @@
                     columnDefs: [{
                         "searchable": false,
                         "orderable": false,
-                        "targets": 11,
+                        "targets": 10,
                         "render": function(data, type, row) {
                             let btn = "<center><a href = 'edit.php?id=" + data + "' style='margin-right: 2px; margin-left: -10px;' class='btn-sm btn-warning'><i class='fas fa-edit'></i></a><a href = 'hapus.php?id=" + data + "' onclick=\"return confirm('Data Akan Dihapus?')\" class='btn-sm btn-danger'><i class='fas fa-trash'></i></a></center>";
                             return btn;
