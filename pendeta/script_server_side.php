@@ -1,5 +1,9 @@
 <?php
 
+
+// SQL server connection information
+include_once '../_config/conn.php';
+
 /*
  * DataTables example server-side processing script.
  *
@@ -43,8 +47,6 @@ $columns = array(
     // )
 );
 
-// SQL server connection information
-include_once '../_config/conn.php';
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

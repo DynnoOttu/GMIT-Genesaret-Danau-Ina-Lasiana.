@@ -2,19 +2,15 @@
 require "../assets/libs/vendor/autoload.php";
 
 if (isset($_POST['tambah'])) {
-    $id_majelis = trim(mysqli_real_escape_string($con, $_POST['id_majelis']));
-    $id_pendeta = trim(mysqli_real_escape_string($con, $_POST['id_pendeta']));
-    $id_kk = trim(mysqli_real_escape_string($con, $_POST['id_kk']));
-    $nama = trim(mysqli_real_escape_string($con, $_POST['nama']));
-    $tempat_dan_tanggal_lahir = trim(mysqli_real_escape_string($con, $_POST['tempat_dan_tanggal_lahir']));
-    $jenis_kelamin = trim(mysqli_real_escape_string($con, $_POST['jenis_kelamin']));
+    $rayon = trim(mysqli_real_escape_string($con, $_POST['rayon']));
+    $keterangan = trim(mysqli_real_escape_string($con, $_POST['keterangan']));
 
-    $sql_cek_identitas = mysqli_query($con, "SELECT * FROM jemaat WHERE nama = '$nama'") or die(mysqli_error($con));
-    if (mysqli_num_rows($sql_cek_identitas) > 0) {
-        echo "<script>alert('Nama Jemaat Sudah Ada');window.location='tambah.php';</script>";
+    $sql_cek_rayon = mysqli_query($con, "SELECT * FROM rayon WHERE rayon = '$rayon'") or die(mysqli_error($con));
+    if (mysqli_num_rows($sql_cek_rayon) > 0) {
+        echo "<script>alert('Rayon Sudah Ada');window.location='tambah.php';</script>";
     } else {
         // Menambahkan data baru
-        $tambah = mysqli_query($con, "INSERT INTO jemaat ( id_majelis, id_pendeta, id_kk, nama, tempat_dan_tanggal_lahir, jenis_kelamin) VALUES ('$id_majelis', '$id_pendeta', '$id_kk', '$nama', '$tempat_dan_tanggal_lahir', '$jenis_kelamin')") or die(mysqli_error($con));
+        $tambah = mysqli_query($con, "INSERT INTO rayon (rayon, keterangan) VALUES ('$rayon','$keterangan')") or die(mysqli_error($con));
         if ($tambah) {
             echo "<script>alert('Data Berhasil Ditambahkan');window.location='data.php';</script>";
         } else {
@@ -24,20 +20,17 @@ if (isset($_POST['tambah'])) {
 } else if (isset($_POST['edit'])) {
     // Mengambil data dari form input
     $id = $_POST['id'];
-    $id_majelis = trim(mysqli_real_escape_string($con, $_POST['id_majelis']));
-    $id_pendeta = trim(mysqli_real_escape_string($con, $_POST['id_pendeta']));
-    $id_kk = trim(mysqli_real_escape_string($con, $_POST['id_kk']));
-    $nama = trim(mysqli_real_escape_string($con, $_POST['nama']));
-    $tempat_dan_tanggal_lahir = trim(mysqli_real_escape_string($con, $_POST['tempat_dan_tanggal_lahir']));
-    $jenis_kelamin = trim(mysqli_real_escape_string($con, $_POST['jenis_kelamin']));
+    $rayon = trim(mysqli_real_escape_string($con, $_POST['rayon']));
+    $keterangan = trim(mysqli_real_escape_string($con, $_POST['keterangan']));
+
 
     // Memeriksa apakah data jemaat sudah ada
-    $sql_cek_identitas = mysqli_query($con, "SELECT * FROM jemaat WHERE nama = '$nama' AND id_jemaat != '$id'") or die(mysqli_error($con));
+    $sql_cek_identitas = mysqli_query($con, "SELECT * FROM rayon WHERE rayon = '$rayon' AND id_rayon != '$id'") or die(mysqli_error($con));
     if (mysqli_num_rows($sql_cek_identitas) > 0) {
-        echo "<script>alert('Status Jemaat Sudah Ada');window.location='edit.php?id=$id';</script>";
+        echo "<script>alert('Status Rayon Sudah Ada');window.location='edit.php?id=$id';</script>";
     } else {
         // Mengupdate data
-        $update = mysqli_query($con, "UPDATE jemaat SET id_majelis = '$id_majelis', id_pendeta = '$id_pendeta', id_kk = '$id_kk', nama = '$nama', tempat_dan_tanggal_lahir = '$tempat_dan_tanggal_lahir', jenis_kelamin = '$jenis_kelamin' WHERE id_jemaat = '$id'") or die(mysqli_error($con));
+        $update = mysqli_query($con, "UPDATE rayon SET rayon = '$rayon', keterangan = '$keterangan' WHERE id_rayon = '$id'") or die(mysqli_error($con));
         if ($update) {
             echo "<script>alert('Data Berhasil Diubah');window.location='data.php';</script>";
         } else {

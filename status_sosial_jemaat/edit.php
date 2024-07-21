@@ -19,6 +19,7 @@
                             <label for="status_jemaat" class="col-sm-2 text-start control-label col-form-label">Status Jemaat</label>
                             <div class="col-sm-9">
                                 <input type="hidden" name="id" value="<?= $data['id_jemaat'] ?>">
+                                <input type="text" name="status_jemaat" class="form-control" id="id_status_jemaat" placeholder="Status Jemaat" value="<?= $data['id_status_jemaat'] ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">

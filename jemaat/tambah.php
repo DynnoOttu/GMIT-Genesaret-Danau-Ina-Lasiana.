@@ -8,12 +8,6 @@
                     <h4 class="card-title">Tambah Data Jemaat</h4>
                     <div class="tabel">
                         <div class="form-group row">
-                            <label for="id_status_jemaat" class="col-sm-2 text-start control-label col-form-label">Status Jemaat</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_status_jemaat" class="form-control" id="id_status_jemaat" placeholder="Status Jemaat" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="nama_majelis" class="col-sm-2 text-start control-label col-form-label">Majelis</label>
                             <div class="col-sm-9">
                                 <input type="text" name="id_majelis" class="form-control" id="id_majelis" placeholder="Nama Majelis" required>

@@ -20,7 +20,7 @@ if (!isset($_SESSION['id_user'])) {
         <meta name="robots" content="noindex,nofollow">
         <title>GMIT Genesaret Danau Ina Lasiana</title>
         <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/images/favicon.png') ?>">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/images/logo_gmit.png') ?>">
         <!-- Custom CSS -->
         <link href="<?= base_url('assets/libs/flot/css/float-chart.css') ?>" rel="stylesheet">
         <!-- Custom CSS -->
@@ -102,6 +102,7 @@ if (!isset($_SESSION['id_user'])) {
                         <!-- ============================================================== -->
                         <ul class="navbar-nav float-start me-auto">
                             <li class="nav-item d-none d-lg-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+
                             <!-- ============================================================== -->
                             <!-- create new -->
                             <!-- ============================================================== -->
@@ -202,10 +203,10 @@ if (!isset($_SESSION['id_user'])) {
                         <ul id="sidebarnav" class="pt-4">
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('dashboard/index.php') ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('jemaat/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i></i><span class="hide-menu">Data Jemaat</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('rayon/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Rayon</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('pendeta/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Pendeta</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('poliklinik/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Poliklinik</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('obat/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Obat</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('rekap_medis/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Rekap Medis</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('user/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data User</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('status_sosial_jemaat/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Status Sosial Jemaat</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout.php') ?>" aria-expanded="false"><i class="fa fa-power-off me-1 ms-1"></i><span class="hide-menu">Logout</span></a></li>
                         </ul>
                     </nav>
