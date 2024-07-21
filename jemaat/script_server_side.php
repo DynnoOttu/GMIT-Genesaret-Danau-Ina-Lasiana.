@@ -30,7 +30,7 @@ $primaryKey = 'id_jemaat';
 // indexes
 $columns = array(
     array('db' => 'id_majelis',  'dt' => 0),
-    array('db' => 'id_pendeta',   'dt' => 1),
+    array('db' => 'nama_pendeta',   'dt' => 1),
     array('db' => 'id_kk',     'dt' => 2),
     array('db' => 'nama',     'dt' => 3),
     array('db' => 'tempat_dan_tanggal_lahir',     'dt' => 4),
@@ -48,6 +48,8 @@ $columns = array(
 // SQL server connection information
 include_once '../_config/conn.php';
 
+$joinQuery = "LEFT JOIN pendeta ON jemaat.id_pendeta = pendeta.id_pendeta";
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * If you just want to use the basic configuration for DataTables with PHP
@@ -57,5 +59,5 @@ include_once '../_config/conn.php';
 require('../assets/libs/ssp.class.php');
 
 echo json_encode(
-    SSP::simple($_GET, $sql_details, $table, $primaryKey, $columns)
+    SSP::simple($_GET, $sql_details, $table, $primaryKey, $columns,  $joinQuery)
 );
