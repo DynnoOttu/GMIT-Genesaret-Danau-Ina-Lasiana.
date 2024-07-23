@@ -209,6 +209,8 @@ if (!isset($_SESSION['id_user'])) {
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kepala_keluarga/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Kepala Keluarga</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('user/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data User</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kordinator/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Kordinator</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('majelis/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Majelis</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('periode/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Periode</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout.php') ?>" aria-expanded="false"><i class="fa fa-power-off me-1 ms-1"></i><span class="hide-menu">Logout</span></a></li>
                         </ul>
                     </nav>

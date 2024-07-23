@@ -22,24 +22,24 @@ if (isset($_POST['tambah'])) {
         }
     }
 } else if (isset($_POST['edit'])) {
-    $id = $_POST['id_kepala_keluarga'];
+    $id = $_POST['id_kordinator'];
+    $id_majelis = trim(mysqli_real_escape_string($con, $_POST['id_majelis']));
     $id_rayon = trim(mysqli_real_escape_string($con, $_POST['id_rayon']));
-    $jenis_kk = trim(mysqli_real_escape_string($con, $_POST['jenis_kk']));
-    $nomor_kk = trim(mysqli_real_escape_string($con, $_POST['nomor_kk']));
+    $nama_kordinator = trim(mysqli_real_escape_string($con, $_POST['nama_kordinator']));
     $alamat = trim(mysqli_real_escape_string($con, $_POST['alamat']));
-    $nama_asrama = trim(mysqli_real_escape_string($con, $_POST['nama_asrama']));
+    $status = trim(mysqli_real_escape_string($con, $_POST['status']));
+    $telepon = trim(mysqli_real_escape_string($con, $_POST['telepon']));
 
-    // Cek apakah nomor KK sudah ada di database, kecuali untuk id_kepala_keluarga yang sedang diupdate
-    $sql_cek_nomor_kk = mysqli_query($con, "SELECT * FROM kepala_keluarga WHERE nomor_kk = '$nomor_kk' AND id_kepala_keluarga != '$id'") or die(mysqli_error($con));
-    if (mysqli_num_rows($sql_cek_nomor_kk) > 0) {
-        echo "<script>alert('Nomor KK Sudah Ada');window.location='edit.php?id=$id';</script>";
+    $sql_cek_nama_kordinator = mysqli_query($con, "SELECT * FROM kordinator WHERE nama_kordinator = '$nama_kordinator' AND id_kordinator != '$id'") or die(mysqli_error($con));
+    if (mysqli_num_rows($sql_cek_nama_kordinator) > 0) {
+        echo "<script>alert('Nama Kordinator Sudah Ada');window.location='edit.php?id=$id';</script>";
     } else {
         // Update data
-        $update = mysqli_query($con, "UPDATE kepala_keluarga SET id_rayon='$id_rayon', jenis_kk='$jenis_kk', nomor_kk='$nomor_kk', alamat='$alamat', nama_asrama='$nama_asrama' WHERE id_kepala_keluarga='$id'") or die(mysqli_error($con));
+        $update = mysqli_query($con, "UPDATE kordinator SET id_majelis = '$id_majelis', id_rayon = '$id_rayon', nama_kordinator = '$nama_kordinator', alamat = '$alamat', status = '$status', telepon = '$telepon' WHERE id_kordinator = '$id'") or die(mysqli_error($con));
         if ($update) {
-            echo "<script>alert('Data Berhasil Diupdate');window.location='data.php';</script>";
+            echo "<script>alert('Data Berhasil Diperbarui');window.location='data.php';</script>";
         } else {
-            echo "<script>alert('Data Gagal Diupdate');window.location='data.php';</script>";
+            echo "<script>alert('Data Gagal Diperbarui');window.location='edit.php?id=$id';</script>";
         }
     }
 } else if (isset($_POST['import'])) {

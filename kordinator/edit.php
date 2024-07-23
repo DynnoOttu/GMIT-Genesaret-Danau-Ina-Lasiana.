@@ -4,55 +4,68 @@
         <div class="card">
             <?php
             $id = $_GET['id'];
-            $sql_kepala_keluarga = mysqli_query($con, "SELECT * FROM kepala_keluarga WHERE id_kepala_keluarga = '$id'") or die(mysqli_error($con));
-            $data = mysqli_fetch_array($sql_kepala_keluarga);
+            $query = mysqli_query($con, "SELECT * FROM kordinator WHERE id_kordinator = '$id'") or die(mysqli_error($con));
+            $data = mysqli_fetch_assoc($query);
             ?>
             <form class="form-horizontal" action="proses.php" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
-                    <h4 class="card-title">Update Data Kepala Keluarga</h4>
+                    <h4 class="card-title">Edit Data Kordinator</h4>
                     <div class="tabel">
-                        <input type="hidden" name="id_kepala_keluarga" value="<?php echo $data['id_kepala_keluarga']; ?>">
+                        <input type="hidden" name="id_kordinator" value="<?= $data['id_kordinator'] ?>">
                         <div class="form-group row">
-                            <label for="id_rayon" class="col-sm-2 text-start control-label col-form-label">Rayon</label>
+                            <label for="id_majelis" class="col-sm-2 text-start control-label col-form-label">Majelis</label>
                             <div class="col-sm-9">
-                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_rayon" id="id_rayon" required>
-                                    <option value="">Pilih Rayon</option>
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_majelis" id="id_majelis" required>
+                                    <option value="">Pilih Majelis</option>
                                     <?php
-                                    $result = mysqli_query($con, "SELECT id_rayon, rayon FROM rayon");
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $selected = ($data['id_rayon'] == $row['id_rayon']) ? 'selected' : '';
-                                        echo "<option value='" . $row['id_rayon'] . "' $selected>" . $row['rayon'] . "</option>";
+                                    $result_majelis = mysqli_query($con, "SELECT id_majelis, jabatan FROM majelis");
+                                    while ($row_majelis = mysqli_fetch_assoc($result_majelis)) {
+                                        echo "<option value='" . $row_majelis['id_majelis'] . "' " . ($row_majelis['id_majelis'] == $data['id_majelis'] ? 'selected' : '') . ">" . $row_majelis['jabatan'] . "</option>";
                                     }
                                     ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="jenis_kk" class="col-sm-2 text-start control-label col-form-label">Jenis KK</label>
+                            <label for="id_rayon" class="col-sm-2 text-start control-label col-form-label">Rayon</label>
                             <div class="col-sm-9">
-                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="jenis_kk" id="jenis_kk" required>
-                                    <option value="">Pilih Jenis KK</option>
-                                    <option value="Rumah" <?php echo ($data['jenis_kk'] == 'Rumah') ? 'selected' : ''; ?>>Rumah</option>
-                                    <option value="asrama" <?php echo ($data['jenis_kk'] == 'asrama') ? 'selected' : ''; ?>>Asrama</option>
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_rayon" id="id_rayon" required>
+                                    <option value="">Pilih Rayon</option>
+                                    <?php
+                                    $result_rayon = mysqli_query($con, "SELECT id_rayon, rayon FROM rayon");
+                                    while ($row_rayon = mysqli_fetch_assoc($result_rayon)) {
+                                        echo "<option value='" . $row_rayon['id_rayon'] . "' " . ($row_rayon['id_rayon'] == $data['id_rayon'] ? 'selected' : '') . ">" . $row_rayon['rayon'] . "</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nomor_kk" class="col-sm-2 text-start control-label col-form-label">Nomor KK</label>
+                            <label for="nama_kordinator" class="col-sm-2 text-start control-label col-form-label">Nama Kordinator</label>
                             <div class="col-sm-9">
-                                <input type="text" name="nomor_kk" class="form-control" id="nomor_kk" placeholder="Nomor KK" value="<?php echo $data['nomor_kk']; ?>" required>
+                                <input type="text" name="nama_kordinator" class="form-control" id="nama_kordinator" placeholder="Nama Kordinator" value="<?= $data['nama_kordinator'] ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="alamat" class="col-sm-2 text-start control-label col-form-label">Alamat</label>
                             <div class="col-sm-9">
-                                <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Alamat" value="<?php echo $data['alamat']; ?>" required>
+                                <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Alamat" value="<?= $data['alamat'] ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="nama_asrama" class="col-sm-2 text-start control-label col-form-label">Nama Asrama</label>
+                            <label for="status" class="col-sm-2 text-start control-label col-form-label">Status</label>
                             <div class="col-sm-9">
-                                <input type="text" name="nama_asrama" class="form-control" id="nama_asrama" placeholder="Nama Asrama" value="<?php echo $data['nama_asrama']; ?>">
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="status" id="status" required>
+                                    <option value="">Pilih Status</option>
+                                    <option value="Aktif" <?= $data['status'] == 'Aktif' ? 'selected' : '' ?>>Aktif</option>
+                                    <option value="Tidak Aktif" <?= $data['status'] == 'Tidak Aktif' ? 'selected' : '' ?>>Tidak Aktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telepon" class="col-sm-2 text-start control-label col-form-label">Telepon</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="telepon" class="form-control" id="telepon" placeholder="Telepon" value="<?= $data['telepon'] ?>" required>
                             </div>
                         </div>
                     </div>
