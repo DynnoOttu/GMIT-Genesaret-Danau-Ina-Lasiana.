@@ -39,24 +39,16 @@ if (isset($_POST['tambah'])) {
     $id_jemaat = trim(mysqli_real_escape_string($con, $_POST['id_jemaat']));
 
     // Memeriksa apakah data status sosial jemaat sudah ada
-    $sql_cek_identitas = mysqli_query($con, "SELECT * FROM status_sosial_jemaat WHERE id_jemaat = '$id_jemaat' AND id_status_sosial_jemaat != '$id' AND deletet_at IS NULL") or die(mysqli_error($con));
+    $sql_cek_identitas = mysqli_query($con, "SELECT * FROM status_sosial_jemaat WHERE id_jemaat = '$id_jemaat' AND id_status_sosial_jemaat != '$id' ") or die(mysqli_error($con));
 
     if (mysqli_num_rows($sql_cek_identitas) > 0) {
         echo "<script>alert('Nama Jemaat Sudah Ada');window.location='edit.php?id=$id';</script>";
     } else {
-
-        $cekStatusMeninggal = mysqli_query($con, "SELECT * FROM status_sosial_jemaat WHERE id_jemaat = '$id_jemaat' AND deletet_at IS NOT NULL") or die(mysqli_error($con));
-
-        if (mysqli_num_rows($cekStatusMeninggal)) {
-            echo "<script>alert('Status Jemaat Sudah Meninggal');window.location='edit.php?id=$id';</script>";
+        $update = mysqli_query($con, "UPDATE status_sosial_jemaat SET pendidikan = '$pendidikan', pekerjaan = '$pekerjaan', status_baptis = '$status_baptis', tanggal_baptis = '$tanggal_baptis', status_sidi = '$status_sidi', tanggal_sidi = '$tanggal_sidi', status_pernikahan = '$status_pernikahan', tanggal_nikah = '$tanggal_nikah', meninggal_at = '$meninggal_at', id_jemaat = '$id_jemaat' WHERE id_status_sosial_jemaat = '$id'") or die(mysqli_error($con));
+        if ($update) {
+            echo "<script>alert('Data Berhasil Diubah');window.location='data.php';</script>";
         } else {
-            // Mengupdate data
-            $update = mysqli_query($con, "UPDATE status_sosial_jemaat SET pendidikan = '$pendidikan', pekerjaan = '$pekerjaan', status_baptis = '$status_baptis', tanggal_baptis = '$tanggal_baptis', status_sidi = '$status_sidi', tanggal_sidi = '$tanggal_sidi', status_pernikahan = '$status_pernikahan', tanggal_nikah = '$tanggal_nikah', meninggal_at = '$meninggal_at', id_jemaat = '$id_jemaat' WHERE id_status_sosial_jemaat = '$id'") or die(mysqli_error($con));
-            if ($update) {
-                echo "<script>alert('Data Berhasil Diubah');window.location='data.php';</script>";
-            } else {
-                echo "<script>alert('Data Gagal Diubah');window.location='data.php';</script>";
-            }
+            echo "<script>alert('Data Gagal Diubah');window.location='data.php';</script>";
         }
     }
 } else if (isset($_POST['import'])) {

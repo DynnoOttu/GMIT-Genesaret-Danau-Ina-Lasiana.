@@ -22,21 +22,31 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="id_majelis" class="col-sm-2 text-start control-label col-form-label">Majelis</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="id_majelis" class="form-control" id="id_majelis" placeholder="Nama Majelis" value="<?= $data['id_majelis'] ?>" required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="id_pendeta" class="col-sm-2 text-start control-label col-form-label">Pendeta</label>
                             <div class="col-sm-9">
-                                <input type="text" name="id_pendeta" class="form-control" id="id_pendeta" placeholder="Nama Pendeta" value="<?= $data['id_pendeta'] ?>" required>
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_pendeta" id="id_pendeta" required>
+                                    <option value="">Pilih Pendeta</option>
+                                    <?php
+                                    $result = mysqli_query($con, "SELECT id_pendeta, nama_pendeta FROM pendeta");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['id_pendeta'] . "'" . ($data['id_pendeta'] == $row['id_pendeta'] ? ' selected' : '') . ">" . $row['nama_pendeta'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="id_kk" class="col-sm-2 text-start control-label col-form-label">Kepala Keluarga</label>
+                            <label for="id_kepala_keluarga" class="col-sm-2 text-start control-label col-form-label">Nomor KK</label>
                             <div class="col-sm-9">
-                                <input type="text" name="id_kk" class="form-control" id="id_kk" placeholder="Kepala Keluarga" value="<?= $data['id_kk'] ?>" required>
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="id_kepala_keluarga" id="id_kepala_keluarga" required>
+                                    <option value="">Pilih Kepala Keluarga</option>
+                                    <?php
+                                    $result = mysqli_query($con, "SELECT id_kepala_keluarga, nomor_kk FROM kepala_keluarga");
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['id_kepala_keluarga'] . "'" . ($data['id_kepala_keluarga'] == $row['id_kepala_keluarga'] ? ' selected' : '') . ">" . $row['nomor_kk'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -56,8 +66,8 @@
                             <div class="col-md-9">
                                 <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="jenis_kelamin" id="jenis_kelamin" required>
                                     <option value="">Pilih Jenis Kelamin</option>
-                                    <option <?php if ($data['jenis_kelamin'] == "L") echo 'selected'; ?> value="L">Laki Laki</option>
-                                    <option <?php if ($data['jenis_kelamin'] == "P") echo 'selected'; ?> value="P">Perempuan</option>
+                                    <option value="Laki-Laki" <?php if ($data['jenis_kelamin'] == "Laki-Laki") echo 'selected'; ?>>Laki Laki</option>
+                                    <option value="Perempuan" <?php if ($data['jenis_kelamin'] == "Perempuan") echo 'selected'; ?>>Perempuan</option>
                                 </select>
                             </div>
                         </div>
@@ -70,6 +80,7 @@
                     </div>
                 </div>
             </form>
+
 
         </div>
     </div>

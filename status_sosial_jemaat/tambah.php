@@ -23,13 +23,35 @@
                     <div class="form-group row">
                         <label for="pendidikan" class="col-sm-2 text-start control-label col-form-label">Pendidikan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="pendidikan" class="form-control" id="pendidikan" placeholder="Pendidikan" required>
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="pendidikan" id="pendidikan" required>
+                                <option value="">Pilih Pendidikan</option>
+                                <option value="SD">Sekolah Dasar</option>
+                                <option value="SMP">Sekolah Menengah Pertama</option>
+                                <option value="SMA">Sekolah Menengah Atas</option>
+                                <option value="D1">Diploma 1</option>
+                                <option value="D2">Diploma 2</option>
+                                <option value="D3">Diploma 3</option>
+                                <option value="S1">Sarjana 1</option>
+                                <option value="S2">Magister</option>
+                                <option value="S3">Doktor</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="pekerjaan" class="col-sm-2 text-start control-label col-form-label">Pekerjaan</label>
                         <div class="col-sm-9">
-                            <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" placeholder="Pekerjaan">
+                            <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="pekerjaan" id="pekerjaan">
+                                <option value="">Pilih Pekerjaan</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Karyawan Swasta">Karyawan Swasta</option>
+                                <option value="PNS">Pegawai Negeri Sipil</option>
+                                <option value="Polri">Polri</option>
+                                <option value="TNI">TNI</option>
+                                <option value="Guru">Guru</option>
+                                <option value="Dokter">Dokter</option>
+                                <option value="Informatika">Informatika</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

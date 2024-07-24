@@ -29,13 +29,12 @@ $primaryKey = 'id_jemaat';
 // parameter represents the DataTables column identifier. In this case simple
 // indexes
 $columns = array(
-    array('db' => 'id_majelis',  'dt' => 0),
-    array('db' => 'nama_pendeta',   'dt' => 1),
-    array('db' => 'id_kk',     'dt' => 2),
-    array('db' => 'nama',     'dt' => 3),
-    array('db' => 'tempat_dan_tanggal_lahir',     'dt' => 4),
-    array('db' => 'jenis_kelamin',     'dt' => 5),
-    array('db' => 'id_jemaat',     'dt' => 6),
+    array('db' => 'nama_pendeta',   'dt' => 0),
+    array('db' => 'nomor_kk',     'dt' => 1),
+    array('db' => 'nama',     'dt' => 2),
+    array('db' => 'tempat_dan_tanggal_lahir',     'dt' => 3),
+    array('db' => 'jenis_kelamin',     'dt' => 4),
+    array('db' => 'id_jemaat',     'dt' => 5),
     // array(
     //     'db'        => 'salary',
     //     'dt'        => 5,
@@ -48,7 +47,7 @@ $columns = array(
 // SQL server connection information
 include_once '../_config/conn.php';
 
-$joinQuery = "LEFT JOIN pendeta ON jemaat.id_pendeta = pendeta.id_pendeta";
+$joinQuery = "LEFT JOIN pendeta ON jemaat.id_pendeta = pendeta.id_pendeta LEFT JOIN kepala_keluarga ON jemaat.id_kepala_keluarga = kepala_keluarga.id_kepala_keluarga";
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

@@ -7,7 +7,7 @@
          <!-- footer -->
          <!-- ============================================================== -->
          <footer class="footer text-center">
-             All Rights Reserved by <a href="https://www.wrappixel.com">Dynno Ottu</a>.
+             All Rights Reserved by <a href="https://www.wrappixel.com">Dynno </a>.
          </footer>
          <!-- ============================================================== -->
          <!-- End footer -->

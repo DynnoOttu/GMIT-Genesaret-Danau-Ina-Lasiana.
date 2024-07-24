@@ -16,9 +16,8 @@
                         <table id="jemaat" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">Majelis</th>
                                     <th scope="col">Pendeta</th>
-                                    <th scope="col">Kepala Keluarga</th>
+                                    <th scope="col">Nomor KK</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tempat Tanggal Lahir</th>
                                     <th scope="col">Jenis Kelamin</th>
@@ -53,7 +52,7 @@
                             columnDefs: [{
                                 "searchable": false,
                                 "orderable": false,
-                                "targets": 6,
+                                "targets": 5,
                                 "render": function(data, type, row) {
                                     let btn = "<center><a href = 'edit.php?id=" + data + "' style='margin-right: 2px; margin-left: -10px;' class='btn-sm btn-warning'><i class='fas fa-edit'></i></a><a href = 'hapus.php?id=" + data + "' onclick=\"return confirm('Data Akan Dihapus?')\" class='btn-sm btn-danger'><i class='fas fa-trash'></i></a></center>";
                                     return btn;
