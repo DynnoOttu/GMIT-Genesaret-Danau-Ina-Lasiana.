@@ -17,8 +17,11 @@
                             <table id="jemaat" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Rayon</th>
-                                        <th scope="col">Keterangan</th>
+                                        <th scope="col">Pendeta</th>
+                                        <th scope="col">Jabatan Majelis</th>
+                                        <th scope="col">Tanggal Menjabat</th>
+                                        <th scope="col">Jabatan Pendeta</th>
+                                        <th scope="col">tanggal Jabatan Berahkir</th>
                                         <th scope="col">
                                             <i class="fas fa-cog"></i>
                                         </th>
@@ -53,7 +56,7 @@
                     columnDefs: [{
                         "searchable": false,
                         "orderable": false,
-                        "targets": 2,
+                        "targets": 5,
                         "render": function(data, type, row) {
                             let btn = "<center><a href = 'edit.php?id=" + data + "' style='margin-right: 2px; margin-left: -10px;' class='btn-sm btn-warning'><i class='fas fa-edit'></i></a><a href = 'hapus.php?id=" + data + "' onclick=\"return confirm('Data Akan Dihapus?')\" class='btn-sm btn-danger'><i class='fas fa-trash'></i></a></center>";
                             return btn;
