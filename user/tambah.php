@@ -22,9 +22,15 @@
                         <div class="form-group row">
                             <label for="kategori" class="col-sm-2 text-start control-label col-form-label">Kategori</label>
                             <div class="col-sm-9">
-                                <input type="text" name="kategori" class="form-control" id="kategori" placeholder="Kategori" required>
+                                <select name="kategori" class="form-control" id="kategori" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Ketua Majelis">Ketua Majelis</option>
+                                    <option value="Kordinator">Kordinator</option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label for="password" class="col-sm-2 text-start control-label col-form-label">Password</label>
                             <div class="col-sm-9">

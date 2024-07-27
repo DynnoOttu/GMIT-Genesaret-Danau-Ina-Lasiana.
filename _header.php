@@ -3,6 +3,7 @@ require_once '_config/config.php';
 if (!isset($_SESSION['id_user'])) {
     echo "<script>window.location='" . base_url('auth/login.php') . "';</script>";
 } else {
+    $kategori = isset($_SESSION['kategori']) ? $_SESSION['kategori'] : '';
 ?>
 
 
@@ -51,9 +52,6 @@ if (!isset($_SESSION['id_user'])) {
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-            <!-- ============================================================== -->
-            <!-- Topbar header - style you can find in pages.scss -->
-            <!-- ============================================================== -->
             <header class="topbar" data-navbarbg="skin5">
                 <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                     <div class="navbar-header" data-logobg="skin5">
@@ -63,19 +61,12 @@ if (!isset($_SESSION['id_user'])) {
                         <!-- ============================================================== -->
                         <a class="navbar-brand" href="index.html">
                             <!-- Logo icon -->
+                            <?php
+                            $kategori = isset($_SESSION['kategori']) ? $_SESSION['kategori'] : '';
+                            ?>
                             <b class="logo-icon ps-2">
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                                <img src="<?= base_url('assets/images/logo-icon.png') ?>" alt="homepage" class="light-logo" />
-
+                                <span><?= $kategori ?></span><br>
                             </b>
-                            <!--End Logo icon -->
-                            <!-- Logo text -->
-                            <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <img src="<?= base_url('assets/images/logo-text.png') ?>" alt="homepage" class="light-logo" />
-
-                            </span>
                             <!-- Logo icon -->
                             <!-- <b class="logo-icon"> -->
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -97,37 +88,8 @@ if (!isset($_SESSION['id_user'])) {
                     <!-- End Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                        <!-- ============================================================== -->
-                        <!-- toggle and nav items -->
-                        <!-- ============================================================== -->
                         <ul class="navbar-nav float-start me-auto">
                             <li class="nav-item d-none d-lg-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-
-                            <!-- ============================================================== -->
-                            <!-- create new -->
-                            <!-- ============================================================== -->
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="d-none d-md-block">Create New <i class="fa fa-angle-down"></i></span>
-                                    <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- ============================================================== -->
-                            <!-- Search -->
-                            <!-- ============================================================== -->
-                            <!-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                                <form class="app-search position-absolute">
-                                    <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                                </form>
-                            </li> -->
                         </ul>
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
@@ -201,17 +163,77 @@ if (!isset($_SESSION['id_user'])) {
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="pt-4">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('dashboard/index.php') ?>" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('jemaat/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i></i><span class="hide-menu">Data Jemaat</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('status_sosial_jemaat/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Status Sosial Jemaat</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('rayon/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Rayon</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('pendeta/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Pendeta</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kepala_keluarga/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data Kepala Keluarga</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('user/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Data User</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kordinator/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Kordinator</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('majelis/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Majelis</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('periode/data.php') ?>" aria-expanded="false"><i class="fas fa-database"></i><span class="hide-menu">Periode</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout.php') ?>" aria-expanded="false"><i class="fa fa-power-off me-1 ms-1"></i><span class="hide-menu">Logout</span></a></li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('dashboard/index.php') ?>" aria-expanded="false">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <?php if ($kategori === 'Kordinator' || $kategori === 'Admin') { ?>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('status_sosial_jemaat/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Status Sosial Jemaat</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if ($kategori === 'Kordinator' || $kategori === 'Admin') { ?>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kepala_keluarga/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Data Kepala Keluarga</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if ($kategori === 'Ketua Majelis' || $kategori === 'Admin') { ?>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('jemaat/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Data Jemaat</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if ($kategori === 'Ketua Majelis' || $kategori === 'Admin') { ?>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('majelis/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Majelis</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if ($kategori === 'Admin') { ?>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('rayon/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Data Rayon</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('pendeta/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Data Pendeta</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('user/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Data User</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('periode/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Periode</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('kordinator/data.php') ?>" aria-expanded="false">
+                                        <i class="fas fa-database"></i><span class="hide-menu">Kordinator</span>
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout.php') ?>" aria-expanded="false">
+                                    <i class="fa fa-power-off me-1 ms-1"></i><span class="hide-menu">Logout</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     <!-- End Sidebar navigation -->

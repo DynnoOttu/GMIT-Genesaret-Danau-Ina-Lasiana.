@@ -53,7 +53,7 @@ if (isset($_SESSION['id_user'])) {
                 <div class="auth-box bg-dark border-top border-secondary">
                     <div id="loginform">
                         <div class="text-center pt-3 pb-3">
-                            <span class="db"><img src="../assets/images/logo.png" alt="logo" /></span>
+                            <span class="db"><img src="../assets/images/logo_gmit(2).png" alt="logo" /></span>
                         </div>
                         <!-- Form -->
                         <form class="form-horizontal mt-3" id="loginform" action="" method="post">
@@ -65,6 +65,8 @@ if (isset($_SESSION['id_user'])) {
                                 $password = trim(mysqli_real_escape_string($con, $_POST['password']));
                                 $sql_login = mysqli_query($con, "SELECT * FROM user WHERE email = '$email' AND password = '$password'") or die(mysqli_error($con));
                                 if (mysqli_num_rows($sql_login) > 0) {
+                                    $data = mysqli_fetch_assoc($sql_login);
+                                    $_SESSION['kategori'] = $data['kategori'];
                                     $_SESSION['id_user'] = $email;
                                     echo "<script>window.location='" . base_url() . "';</script>";
                                 } else { ?>

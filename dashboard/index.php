@@ -1,19 +1,24 @@
 <?php include '../_header.php' ?>
 
 <?php
-$get1 = mysqli_query($con, "SELECT * FROM majelis");
+$get1 = mysqli_query($con, "SELECT * FROM jemaat");
 $count1 = mysqli_num_rows($get1);
 
-$get2 = mysqli_query($con, "SELECT * FROM jemaat");
+$get2 = mysqli_query($con, "SELECT * FROM majelis");
 $count2 = mysqli_num_rows($get2);
 
-//Grafik
-// $label = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November"];
-// for ($bulan = 1; $bulan < 13; $bulan++) {
-//     $query = mysqli_query($con, "SELECT sum(id_pasien) as id_pasien from tb_rekapmedis Where MONTH(tanggal_periksa) = '$bulan'");
-//     $row = $query->fetch_array();
-//     $jumlah_pasien[] = $row['id_pasien'];
-// }
+$dataRayon = mysqli_query($con, "SELECT * FROM rayon");
+$jumlahRayon = mysqli_num_rows($dataRayon);
+
+
+$months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+$jumlahJemaatPerBulan = [];
+
+for ($bulan = 1; $bulan <= 12; $bulan++) {
+    $query = mysqli_query($con, "SELECT COUNT(*) as count FROM status_sosial_jemaat WHERE MONTH(meninggal_at) = '$bulan' AND meninggal_at IS NOT NULL");
+    $row = $query->fetch_assoc();
+    $jumlahJemaatPerBulan[] = $row['count'] ?? 0;
+}
 
 ?>
 
@@ -39,9 +44,18 @@ $count2 = mysqli_num_rows($get2);
                 </div>
             </div>
         </div>
+        <div class="col-md-6 col-lg-4 col-xlg-3">
+            <div class="card card-hover">
+                <div class="box bg-warning text-center">
+                    <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
+                    <h6 class="text-white">Jumlah Rayon: <?= $jumlahRayon ?></h6>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- ============================================================== -->
-    <div class="row mt-3">
+    <div class="row mt-5">
+        <h3 class="mb-2">Jumlah jemaat yang meningal perbulan</h3>
         <div class="col-md-6">
             <canvas id="myChart" height="40vh" width="80vw"></canvas>
         </div>
@@ -51,45 +65,39 @@ $count2 = mysqli_num_rows($get2);
 
 <?php include '../_footer.php' ?>
 
-<!-- <script>
+<script>
+    const labels = <?php echo json_encode($months); ?>;
+    const dataValues = <?php echo json_encode($jumlahJemaatPerBulan); ?>;
+
     const data = {
-        labels: [
-            'Prempuan',
-            'Laki-Laki',
-        ],
+        labels: labels,
         datasets: [{
-            label: 'Jumlah Pasien Berdasarkan Jenis Kelamin',
-            data: [
-
-                <?php
-                $perempuan = mysqli_query($con, "SELECT * FROM tb_pasien WHERE jenis_kelamin = 'Perempuan'");
-                $queryP = mysqli_num_rows($perempuan);
-                echo $queryP;
-                ?>,
-
-
-                <?php
-                $lakiLaki = mysqli_query($con, "SELECT * FROM tb_pasien WHERE jenis_kelamin = 'Laki-Laki'");
-                $queryLaki = mysqli_num_rows($lakiLaki);
-                echo $queryLaki;
-                ?>
-
-            ],
-            backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-            ],
-            hoverOffset: 4
+            label: 'Jumlah Jemaat Meninggal Berdasarkan Bulan',
+            data: dataValues,
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            fill: false,
+            tension: 0.1
         }]
     };
 
     const config = {
-        type: 'pie',
+        type: 'bar',
         data: data,
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     };
 
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
-    )
-</script> -->
+    );
+</script>

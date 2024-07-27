@@ -9,6 +9,16 @@
             $sql_jemaat = mysqli_query($con, "SELECT * FROM user WHERE id_user = '$id'") or die(mysqli_error($con));
             $data = mysqli_fetch_array($sql_jemaat);
 
+            // Definisikan opsi kategori
+            $categories = [
+                'Admin' => 'Admin',
+                'Ketua Majelis' => 'Ketua Majelis',
+                'Kordinator' => 'Kordinator'
+            ];
+
+            // Ambil nilai kategori yang dipilih dari database
+            $selectedCategory = $data['kategori'];
+
             ?>
 
             <form class="form-horizontal" action="proses.php" method="POST" enctype="multipart/form-data">
@@ -31,7 +41,15 @@
                         <div class="form-group row">
                             <label for="kategori" class="col-sm-2 text-start control-label col-form-label">Kategori</label>
                             <div class="col-sm-9">
-                                <input type="text" name="kategori" class="form-control" id="kategori" placeholder="Rayon" value="<?= $data['kategori'] ?>" required>
+                                <select class="form-control select2 form-select shadow-none" style="width: 100%; height:36px;" name="kategori" id="kategori" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <?php
+                                    foreach ($categories as $value => $label) {
+                                        $selected = ($selectedCategory == $value) ? "selected" : "";
+                                        echo "<option value='" . htmlspecialchars($value) . "' $selected>" . htmlspecialchars($label) . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>

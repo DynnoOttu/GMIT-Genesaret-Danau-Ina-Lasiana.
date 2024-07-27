@@ -1,5 +1,18 @@
 <?php include '../_header.php' ?>
 
+<?php
+// Ambil kategori dari sesi
+$kategori = isset($_SESSION['kategori']) ? $_SESSION['kategori'] : '';
+
+// Cek kategori dan hak akses
+// Misalnya, hanya Admin dan Ketua Majelis yang dapat mengakses halaman ini
+if ($kategori !== 'Admin' && $kategori !== 'Kordinator') {
+    http_response_code(403); // Set status kode HTTP 403 (Forbidden)
+    echo "<script>window.location='" . base_url('akses-ditolak.php') . "';</script>";
+    exit; // Pastikan eksekusi berhenti setelah redirect
+}
+?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -64,7 +77,7 @@
                         "orderable": false,
                         "targets": 10,
                         "render": function(data, type, row) {
-                            let btn = "<center><a href = 'edit.php?id=" + data + "' style='margin-right: 2px; margin-left: -10px;' class='btn-sm btn-warning'><i class='fas fa-edit'></i></a><a href = 'hapus.php?id=" + data + "' onclick=\"return confirm('Data Akan Dihapus?')\" class='btn-sm btn-danger'><i class='fas fa-trash'></i></a></center>";
+                            let btn = "<center><a href = 'edit.php?id=" + data + "' style='' class='btn-sm btn-warning'><i class='fas fa-edit' style='margin-bottom: 15px'></i></a><a href = 'hapus.php?id=" + data + "' onclick=\"return confirm('Data Akan Dihapus?')\" class='btn-sm btn-danger'><i class='fas fa-trash'></i></a></center>";
                             return btn;
                         }
                     }],
